@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/marginTop"
+    android:layout_marginBottom="@dimen/marginBottom"
+    android:layout_marginLeft="@dimen/marginLeft"
+    android:layout_marginRight="@dimen/marginRight"
+    android:layout_marginStart="@dimen/marginLeft"
+    android:layout_marginEnd="@dimen/marginRight"
+    android:gravity="center_horizontal"
+    tools:context=".CreateGroupActivity">
+
+    <TextView
+        android:id="@+id/create_groupTV"
+        android:text="@string/create_group"
+        style="@style/HeaderStyle"/>
+
+    <TextView
+        android:id="@+id/group_errorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/error_color"
+        android:textSize="@dimen/normal_text_size"
+        android:layout_below="@id/create_groupTV"/>
+
+    <TextView
+        android:id="@+id/group_successTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_500"
+        android:textSize="@dimen/normal_text_size"
+        android:layout_below="@id/create_groupTV"/>
+
+    <EditText
+        android:id="@+id/group_name_ET"
+        android:hint="@string/group_name"
+        android:inputType="text"
+        android:layout_below="@id/create_groupTV"
+        style="@style/FormStyle"/>
+
+    <EditText
+        android:id="@+id/group_desc_ET"
+        android:hint="@string/group_desc"
+        android:inputType="text"
+        android:layout_below="@+id/group_name_ET"
+        style="@style/FormStyle"/>
+
+    <Button
+        android:id="@+id/create_BTN"
+        style="@style/ButtonStyle"
+        android:text="@string/create"
+        android:layout_below="@id/group_desc_ET"/>
+
+</RelativeLayout>

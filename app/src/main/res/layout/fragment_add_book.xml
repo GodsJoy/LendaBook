@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/marginTop"
+    android:layout_marginBottom="@dimen/marginBottom"
+    android:layout_marginLeft="@dimen/marginLeft"
+    android:layout_marginRight="@dimen/marginRight"
+    android:layout_marginStart="@dimen/marginLeft"
+    android:layout_marginEnd="@dimen/marginRight"
+    android:gravity="center_horizontal"
+    tools:context=".CreateGroupActivity">
+
+    <TextView
+        android:id="@+id/add_bookTV"
+        android:text="@string/add_a_book"
+        style="@style/HeaderStyle"/>
+
+    <TextView
+        android:id="@+id/successTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_bookTV"
+        android:textColor="@color/purple_500"
+        android:textSize="@dimen/normal_text_size"/>
+
+    <TextView
+        android:id="@+id/errorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/error_color"
+        android:textSize="@dimen/normal_text_size"
+        android:layout_below="@id/add_bookTV"/>
+
+    <ImageView
+        android:id="@+id/book_uploadIV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/book_image_upload_h"
+        android:scaleType="centerInside"
+        android:layout_below="@id/errorTV"/>
+
+
+    <EditText
+        android:id="@+id/book_nameTV"
+        android:hint="@string/book_name"
+        style="@style/FormStyle"
+        android:layout_below="@id/book_uploadIV"/>
+
+    <Spinner
+        android:id="@+id/group_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_nameTV"
+        android:layout_marginTop="@dimen/marginTop" />
+
+    <Button
+        android:id="@+id/chooseBTN"
+        style="@style/ButtonStyle"
+        android:layout_below="@id/group_spinner"
+        android:text="@string/choose_book"/>
+
+    <Button
+        android:id="@+id/uploadBTN"
+        style="@style/ButtonStyle"
+        android:layout_toRightOf="@id/chooseBTN"
+        android:layout_below="@id/group_spinner"
+        android:text="@string/upload_book"
+        android:layout_marginLeft="@dimen/marginLeft"/>
+
+
+</RelativeLayout>

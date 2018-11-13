@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "413707729889",
+    "firebase_url": "https://lendabook-9aecc.firebaseio.com",
+    "project_id": "lendabook-9aecc",
+    "storage_bucket": "lendabook-9aecc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413707729889:android:1784c9d617832572",
+        "android_client_info": {
+          "package_name": "com.example.android.lendabook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413707729889-ka8d6skh5a3g320fl4fd52uo1bijf1de.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.lendabook",
+            "certificate_hash": "7065d4e29b6c328318af343edc40a93750190a2f"
+          }
+        },
+        {
+          "client_id": "413707729889-uvqq50pkrsc1tndd7ir1ab0i259ss139.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyvmBenpYTbVNpFXFx-ZNzsc5DwWbLG34"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413707729889-uvqq50pkrsc1tndd7ir1ab0i259ss139.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

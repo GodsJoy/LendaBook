@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginLeft">62dp</dimen>
+    <dimen name="marginRight">62dp</dimen>
+    <dimen name="card_view_height">280dp</dimen>
+    <dimen name="card_view_elevation">6dp</dimen>
+
+</resources>
