@@ -17,7 +17,8 @@
         android:id="@+id/bookImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/book_image_upload_h"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:contentDescription="@string/book_image_desc"/>
 
     <Button
         android:id="@+id/requestBTN"

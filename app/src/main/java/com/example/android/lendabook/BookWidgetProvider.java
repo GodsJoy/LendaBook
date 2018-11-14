@@ -22,8 +22,8 @@ public class BookWidgetProvider extends AppWidgetProvider {
                 Context.MODE_PRIVATE);
         int no_books_borrowed = pref.getInt(context.getString(R.string.no_books_borrowed), MainActivity.default_no_pref);
         int no_books_owned = pref.getInt(context.getString(R.string.no_books_owned), MainActivity.default_no_pref);
-        views.setTextViewText(R.id.books_owned, "No of books owned:"+no_books_owned);
-        views.setTextViewText(R.id.books_borrowed, "No of books borrowed:"+no_books_borrowed);
+        views.setTextViewText(R.id.books_owned, context.getString(R.string.no_books_owned_widget, no_books_owned));
+        views.setTextViewText(R.id.books_borrowed, context.getString(R.string.no_books_borrowed_widget, no_books_borrowed));
 
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);

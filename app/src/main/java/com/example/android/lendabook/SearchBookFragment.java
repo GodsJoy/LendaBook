@@ -114,6 +114,7 @@ public class SearchBookFragment extends Fragment
             @Override
             public void onClick(View view) {
                 if(!selectedGroup.equals(parentActivity.getString(R.string.select_a_group))) {
+                    errorTV.setVisibility(View.INVISIBLE);
                     DatabaseReference bookRef = mFirebaseDatabase.getReference().child("book");
                     bookRef.orderByChild("group").equalTo(selectedGroup).addChildEventListener(new ChildEventListener() {
                         @Override

@@ -11,7 +11,8 @@
     <ImageView
         android:id="@+id/abookImage"
         android:layout_width="100dp"
-        android:layout_height="70dp" />
+        android:layout_height="70dp"
+        android:contentDescription="@string/book_image_desc" />
 
     <TextView
         android:id="@+id/abookName"

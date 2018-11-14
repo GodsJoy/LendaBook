@@ -45,7 +45,7 @@
                 android:id="@+id/tabitem1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Books"/>
+                android:text="@string/tab_text_1"/>
 
             <!--<android.support.design.widget.TabItem
                 android:id="@+id/tabitem2"
@@ -58,7 +58,7 @@
                 android:id="@+id/tabitem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Borrowed Books"/>
+                android:text="@string/tab_text_2"/>
         </android.support.design.widget.TabLayout>
 
 

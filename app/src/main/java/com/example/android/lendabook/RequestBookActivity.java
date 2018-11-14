@@ -62,9 +62,7 @@ public class RequestBookActivity extends AppCompatActivity {
                         emailIntent.setType("text/plain");
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{aBook.getOwnerEmail()});
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
-                        emailIntent.putExtra(Intent.EXTRA_TEXT,
-                                "The book titled " + aBook.getName() +
-                                        " has been requested by the user with email "+userEmail);
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body, aBook.getName(), userEmail));
                         try {
                             //send email to book owner
                             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
@@ -76,7 +74,6 @@ public class RequestBookActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putInt(getString(R.string.no_books_borrowed), no_books_borrowed+1);
                             editor.commit();
-                            Log.d("Books after", pref.getInt(getString(R.string.no_books_borrowed), MainActivity.default_no_pref)+"");
                             BookUpdateService.startActionUpdateWidget(RequestBookActivity.this);
                         } catch (android.content.ActivityNotFoundException ex) {
                             Log.d("EmailError", "Email not sent");

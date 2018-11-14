@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginEnd="@dimen/marginRight"
     android:layout_marginTop="@dimen/marginTop"
     android:layout_marginStart="@dimen/marginLeft"
     android:layout_marginBottom="@dimen/marginBottom">
 <!-- make it avatar -->
     <ImageView
-    android:id="@+id/abookImage"
-    android:layout_width="100dp"
-    android:layout_height="70dp" />
+        android:id="@+id/abookImage"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/book_image_desc" />
 
     <TextView
         android:id="@+id/abookName"

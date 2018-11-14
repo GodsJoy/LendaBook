@@ -44,6 +44,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -150,7 +151,7 @@ public class AddBookFragment extends Fragment implements AdapterView.OnItemSelec
         groupSpinner.setOnItemSelectedListener(this);
 
         //Launch image chooser to choose image for book
-        chooseBTN.setOnClickListener(new View.OnClickListener() {
+        /*chooseBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -158,59 +159,75 @@ public class AddBookFragment extends Fragment implements AdapterView.OnItemSelec
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
-        });
+        });*/
 
         //upload book image to firebase storage and upload book details into firebase database
         uploadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final StorageReference imageRef = mFirebaseStorage.getReference().child("book_images")
-                        .child(selectedImage.getLastPathSegment());
-                imageRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //String downloadUri = imageRef.getDownloadUrl()+"";
-                        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                successTV.setVisibility(View.VISIBLE);
-                                successTV.setText(getString(R.string.suc_add_book));
+                final String name = bookName.getText().toString();
+                if(!(selectedImage == null || name.equals("") || group.equals(parentActivity.getString(R.string.select_a_group)))) {
+                    final StorageReference imageRef = mFirebaseStorage.getReference().child("book_images")
+                            .child(selectedImage.getLastPathSegment());
+                    imageRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //String downloadUri = imageRef.getDownloadUrl()+"";
+                            imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    errorTV.setVisibility(View.INVISIBLE);
+                                    successTV.setVisibility(View.VISIBLE);
+                                    successTV.setText(getString(R.string.suc_add_book));
+                                    String downloadUrl = uri.toString();
 
-                                String downloadUrl = uri.toString();
-                                String name = bookName.getText().toString();
-                                DatabaseReference bookRef = mFirebaseDatabase.getReference().child("book").child(name+userId);
-                                bookRef.setValue(new Book(name, group, downloadUrl, userId, userEmail));
-                                //increment the number of books owned
-                                int no_books_owned = pref.getInt(getString(R.string.no_books_owned), MainActivity.default_no_pref);
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putInt(getString(R.string.no_books_owned), no_books_owned+1);
-                                editor.commit();
-                                BookUpdateService.startActionUpdateWidget(parentActivity);
-                                //Load interstitialAd once book is uploaded
-                                if (interstitialAd.isLoaded()) {
-                                    interstitialAd.show();
-                                    Log.d("TAG1", "The interstitial loaded.");
-                                } else {
-                                    Log.d("TAG1", "The interstitial wasn't loaded yet.");
+                                    DatabaseReference bookRef = mFirebaseDatabase.getReference().child("book").child(name + userId);
+                                    bookRef.setValue(new Book(name, group, downloadUrl, userId, userEmail));
+                                    //increment the number of books owned
+                                    int no_books_owned = pref.getInt(getString(R.string.no_books_owned), MainActivity.default_no_pref);
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putInt(getString(R.string.no_books_owned), no_books_owned + 1);
+                                    editor.commit();
+                                    BookUpdateService.startActionUpdateWidget(parentActivity);
+                                    //Load interstitialAd once book is uploaded
+                                    if (interstitialAd.isLoaded()) {
+                                        interstitialAd.show();
+                                        Log.d("TAG1", "The interstitial loaded.");
+                                    } else {
+                                        Log.d("TAG1", "The interstitial wasn't loaded yet.");
+                                    }
                                 }
-                            }
 
-                            //Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                errorTV.setVisibility(View.VISIBLE);
-                                errorTV.setText(getString(R.string.error_add_book));
-                            }
-                        });
+                                //Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    errorTV.setVisibility(View.VISIBLE);
+                                    errorTV.setText(getString(R.string.error_add_book));
+                                }
+                            });
 
-                    }
-                });
+                        }
+                    });
+                }
+                else{
+                    errorTV.setVisibility(View.VISIBLE);
+                    errorTV.setText(getString(R.string.error_missing_fields));
+                }
 
             }
         });
 
         return rootView;
+    }
+
+    //Launch image chooser to choose image for book
+    @OnClick(R.id.chooseBTN)
+    public void submit(View view){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/jpeg");
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+        startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
     }
 
 
